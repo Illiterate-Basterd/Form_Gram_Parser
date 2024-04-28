@@ -1,6 +1,5 @@
 %{
-    #include <stdio.h>
-    #include <stdlib.h>
+    #include "MyLang.h"
     #define YYERROR_VERBOSE 1
 
     extern int yylineno;
@@ -144,14 +143,3 @@ RET:  RETURN ';'
 
 FORSTMNT: FOR '(' FOREXPR1 ';' FOREXPR2 ';' FOREXPR3 ')' OP
 %%
-
-int main(void)
-{
-    yyparse();
-    if(!err)
-    {
-        printf("Success!\n");
-        return 0;
-    }
-    exit(1);
-}
