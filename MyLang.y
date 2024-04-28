@@ -42,7 +42,6 @@ OPS:  OP
 
 OP:   FUNCBODY
     | EXPR ';'
-    | EXPR error
     | ';' 
     | IF '(' EXPR ')' '{' OPS '}'
     | IF '(' EXPR ')' '{' OPS '}' ELSE '{' OPS '}'
@@ -52,6 +51,7 @@ OP:   FUNCBODY
     | RET
     | DECL ';'
     | FUNCDECL
+    | error OP
 
 
 FUNCBODY: '{' '}'
@@ -120,7 +120,6 @@ VAL:  NUM
     | ID 
     | ID '(' ARGS ')'
     | PRINT '(' ARGS ')'
-    | error
 
 
 DATATYPE: INT

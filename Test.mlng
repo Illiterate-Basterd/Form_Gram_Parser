@@ -10,7 +10,7 @@ int t = g = c = 4 * 2;
 
 int x = func(4, 0);
 
-for( int a = 2; a < 3; a = a + 3)
+for( int a = 2 a < 3; a = a + 3) // Неверная запись цикла for()
 {
     for (int b = 1; b > -5; b = b - 1)
     {
@@ -22,15 +22,17 @@ for( int a = 2; a < 3; a = a + 3)
     }
 }
 
+bool bool; // Неверное определение переменной
+
 do
 {
     b = a + 3;
-    b = b * 2;
+    b = b ** 2; // Неверное арифметическое выражение
 }while(1);
 
 while(res != 0)
 {
-    print("OKAY\n");
+    print("OKAY\\n"); // Неверная escape-последовательность
 }
 
 if(!res)
@@ -42,4 +44,4 @@ else
     print("Access granted!\n");
 }
 
-return (print("OK"));
+return (print("OK"); // Неверная последовательность открывающих и закрывающих скобок
