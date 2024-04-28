@@ -12,7 +12,7 @@ all: clean build
 
 build:
 	@echo ---------------------------------------------------------
-	$(BISON) -ydv -Wcounterexamples $(PARSER)
+	$(BISON) -ydv -Wcounterexamples -Wno-yacc $(PARSER)
 	@echo ---------------------------------------------------------
 	$(LEX) $(LEXER)
 	@echo ---------------------------------------------------------

@@ -1,6 +1,7 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
+    #define YYERROR_VERBOSE 1
 
     extern int yylineno;
     extern int yylex();
@@ -17,6 +18,9 @@
         return;
     }
 %}
+
+%defines
+%define parse.error verbose
 
 %start PROGRAM
 
