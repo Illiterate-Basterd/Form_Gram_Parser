@@ -1,5 +1,5 @@
 char password = "passwrd";
-printf("Enter password\n");
+print("Enter password\n");
 int res = check(password);
 
 void func(int a, bool b);
