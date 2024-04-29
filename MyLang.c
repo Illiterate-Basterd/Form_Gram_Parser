@@ -77,8 +77,11 @@ void PrintError(char *errorstring, ...) {
     }
     else {
         fprintf(stdout, "...... !");
-        for (i=0; i<start; i++)
-        fprintf(stdout, ".");
+        if(start != 1)
+        {
+            for (i=0; i<start; i++)
+            fprintf(stdout, ".");
+        }
         for (i=start; i<=end; i++)
         fprintf(stdout, "^");
         
