@@ -81,9 +81,8 @@ void PrintError(char *errorstring, ...) {
         fprintf(stdout, ".");
         for (i=start; i<=end; i++)
         fprintf(stdout, "^");
-        for (i=end+1; i<lBuffer; i++)
-        fprintf(stdout, ".");
-        fprintf(stdout, "   token %d:%d\n", start, end);
+        
+        fprintf(stdout, "\n");
     }
 /* */
 
