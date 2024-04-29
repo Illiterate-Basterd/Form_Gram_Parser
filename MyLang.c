@@ -21,6 +21,7 @@ static int nTokenLength = 0;
 static int nTokenNextStart = 0;
 static int lMaxBuffer = 1000;
 static char *buffer;
+extern int yylineno;
 
 static int getNextLine(void);
 
@@ -92,7 +93,7 @@ void PrintError(char *errorstring, ...) {
     vsprintf(errmsg, errorstring, args);
     va_end(args);
 
-    fprintf(stdout, "Error: %s\n", errmsg);
+    fprintf(stdout, "Error: %s at line %d\n", errmsg, yylineno);
     
     for (i = 1; i < 71; i++)
         fprintf(stdout, " "); 
