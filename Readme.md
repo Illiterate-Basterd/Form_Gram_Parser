@@ -1,4 +1,4 @@
-C-Like language parser
+C-Like language parser written using flex/bison
 ```
     13 |for( int a = 2 a < 3; a = a + 3) // Неверная запись цикла for()
 ...... !...............^
