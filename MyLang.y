@@ -1,20 +1,23 @@
+%locations
 %{
     #include "MyLang.h"
     #define YYERROR_VERBOSE 1
 
     extern int yylineno;
+    extern char * yytext;
     extern int yylex();
-    extern char *yytext;
-    int err = 0;
-    void yyerror(char *str)
+    extern YYLTYPE yylloc;
+
+    extern void yyerror(char *s) 
     {
-        err = 1;
-        if(*yytext != '\n')
-            fprintf(stderr, "Error: %s while parsing token \"%s\", line %d\n", str, yytext, yylineno);
-        else
-            fprintf(stderr, "Error: %s while parsing token \"\\n\", line %d\n", str, yylineno);
-        
-        return;
+        DumpRow();
+        PrintError(s);
+    }
+
+    #define YY_INPUT(buf,result,max_size)  {\
+    result = GetNextChar(buf, max_size); \
+    if (  result <= 0  ) \
+    	result = YY_NULL; \
     }
 %}
 

@@ -1,6 +1,11 @@
 %{
     #include "MyLang.h"
-    void yyerror(char *str);
+
+    #define YY_INPUT(buf,result,max_size)  {\
+    result = GetNextChar(buf, max_size); \
+    if (  result <= 0  ) \
+      result = YY_NULL; \
+    }
 %}
 
 %option yylineno
@@ -10,78 +15,81 @@
 %x MULTICOM
 
 %%
-[/][/].*                ; //comment
+[/][/].*                 BeginToken(yytext); // comment
 
-if                      return IF;
+if                      { BeginToken(yytext); return IF; }
 
-else                    return ELSE; 
+else                    { BeginToken(yytext); return ELSE; }
 
-while                   return WHILE;
+while                   { BeginToken(yytext); return WHILE; }
 
-for                     return FOR;
+for                     { BeginToken(yytext); return FOR; }
 
-do                      return DO;
+do                      { BeginToken(yytext); return DO; }
 
-==                      return EQ; 
+==                      { BeginToken(yytext); return EQ; }
 
->=                      return GE; 
+>=                      { BeginToken(yytext); return GE; }
 
-&&                      return AND; 
+&&                      { BeginToken(yytext); return AND; }
 
-=                       return ASSIGN; 
+=                       { BeginToken(yytext); return ASSIGN; }
 
-\|\|                    return OR; 
+\|\|                    { BeginToken(yytext); return OR; }
 
-%                       return DIV; 
+%                       { BeginToken(yytext); return DIV; }
 
-return                  return RETURN; 
+return                  { BeginToken(yytext); return RETURN; }
 
-print                   return PRINT; 
+print                   { BeginToken(yytext); return PRINT; }
 
-int                     return INT;
+int                     { BeginToken(yytext); return INT; }
 
-bool                    return BOOL;
+bool                    { BeginToken(yytext); return BOOL; }
 
-char                    return CHAR;
+char                    { BeginToken(yytext); return CHAR; }
 
-float                   return FLOAT;
+float                   { BeginToken(yytext); return FLOAT; }
 
-void                    return VOID;
+void                    { BeginToken(yytext); return VOID; }
 
-"<="                    return LE; 
+"<="                    { BeginToken(yytext); return LE; }
 
-!=                      return NE; 
+!=                      { BeginToken(yytext); return NE; }
 
 [0-9]+                  {   
+                            BeginToken(yytext);
                             yylval = yytext;
                             return NUM;
                         }
                         
 
-[a-zA-Z_][a-zA-Z0-9_]*  {   
+[a-zA-Z_][a-zA-Z0-9_]*  { 
+                            BeginToken(yytext);  
                             yylval = yytext;
                             return ID;
                         }
 
-<INITIAL>"/*"          BEGIN(MULTICOM);
-<MULTICOM>"*/"         BEGIN(INITIAL);
-<MULTICOM>"\n"         ;
-<MULTICOM>.            ;                        
+<INITIAL>"/*"          { BeginToken(yytext); BEGIN(MULTICOM); }
+<MULTICOM>"*/"         { BeginToken(yytext); BEGIN(INITIAL); }
+<MULTICOM>"\n"         BeginToken(yytext);
+<MULTICOM>.            BeginToken(yytext);                        
 
 <INITIAL>["]            {   
+                            BeginToken(yytext);
                             yylval = "";
                             BEGIN(STR);
                         }
                         
-<STR>[^\\\n"]           yylval += yytext; 
-<STR>\\n                yylval += '\n'; 
-<STR>\\["]              yylval += '\"'; 
-<STR>\\                 yyerror("Invalid escape sequence"); 
-<STR>\n                 yyerror("Newline in string literal"); 
-<STR>["]                BEGIN(INITIAL); return STRING; 
+<STR>[^\\\n"]           { BeginToken(yytext); yylval += yytext; }
+<STR>\\n                { BeginToken(yytext); yylval += '\n'; }
+<STR>\\["]              { BeginToken(yytext); yylval += '\"'; }
+<STR>\\                 { BeginToken(yytext); } 
+<STR>\n                 { BeginToken(yytext); } 
+<STR>["]                { BeginToken(yytext); BEGIN(INITIAL); return STRING; }
 
-[ \t\r\n]               ; //whitespace
-[-;()<>+*/!,{}]           return *yytext; 
+[ \t\r\n]               BeginToken(yytext); //whitespace
+[-;()<>+*/!,{}]         { BeginToken(yytext); return *yytext; } 
 
-.                       yyerror("Invalid character");
+.                       {BeginToken(yytext); return *yytext; }
 %%
