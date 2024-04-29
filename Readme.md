@@ -1,14 +1,14 @@
 C-Like language parser written using flex/bison
 ```
-     7 |char test(char, float c); // Неверное объявление параметров функции
+     7 |char test(char , float c); // Неверное объявление параметров функции
 ...... !...............^
 Error: syntax error, unexpected ',', expecting ID at line 7
                                                                       
-    15 |for( int a = 2 a < 3; a = a + 3) // Неверная запись цикла for()
+    15 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
 ...... !...............^
 Error: syntax error, unexpected ID, expecting ';' at line 15
                                                                       
-    15 |for( int a = 2 a < 3; a = a + 3) // Неверная запись цикла for()
+    15 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
 ...... !................................^
 Error: syntax error, unexpected ')', expecting ';' at line 15
                                                                       
