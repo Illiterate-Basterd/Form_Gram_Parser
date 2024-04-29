@@ -4,6 +4,8 @@ int res = check(password);
 
 void func(int a, bool b);
 
+char test(char, float c); // Неверное объявление параметров функции
+
 int q = -7;
 
 int t = g = c = 4 * 2;
