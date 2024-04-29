@@ -110,27 +110,6 @@ void DumpRow(void) {
 }
 
 extern
-void PrintSeparateLine(char * msg){
-    int i;
-    if(msg != NULL)
-    {
-        fprintf(stdout, "%s", msg);
-        int msg_len = strlen(msg); 
-        if(msg_len < PREAMBULA_SIZE)
-        {
-            for(i = 0; i < PREAMBULA_SIZE - msg_len; i++)
-                fprintf(stdout, " ");
-        }
-        fprintf(stdout, "|");
-    }
-    else
-        fprintf(stdout, "       |");
-    for (i = 1; i < 71; i++)
-        fprintf(stdout, "-"); 
-    fprintf(stdout, "\n"); 
-}
-
-extern
 void BeginToken(char *t) {
     /*================================================================*/
     /* remember last read token --------------------------------------*/
@@ -232,13 +211,12 @@ int main(int argc, char *argv[])
         fclose(file);
         return 12;
     }
-    PrintSeparateLine("start");
     
     if (  getNextLine() == 0  )
         yyparse();
     
     free(buffer);
     fclose(file);
-    PrintSeparateLine("exit");
+
     return 0;
 }
