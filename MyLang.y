@@ -1,4 +1,3 @@
-%locations
 %{
     #include "MyLang.h"
     #define YYERROR_VERBOSE 1
@@ -20,6 +19,8 @@
     	result = YY_NULL; \
     }
 %}
+
+%locations
 
 %defines
 %define parse.error verbose
