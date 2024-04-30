@@ -22,6 +22,7 @@ static int nTokenNextStart = 0;
 static int lMaxBuffer = 1000;
 static char *buffer;
 extern int yylineno;
+int err = false;
 
 static int getNextLine(void);
 
@@ -58,6 +59,7 @@ char *dumpString(char *s) {
 }
 
 void PrintError(char *errorstring, ...) {
+    err = true;
     static char errmsg[10000];
     va_list args;
 
@@ -107,6 +109,11 @@ void PrintError(char *errorstring, ...) {
  * dumps the contents of the current row
  *------------------------------------------------------------------*/
 void DumpRow(void) {
+        if(!err)
+    {
+        fprintf(stderr, "Error(s) occured while parsing:\n\n");
+    }
+    
     fprintf(stdout, "%6d |%.*s", nRow, lBuffer, buffer);
 }
 
@@ -210,7 +217,7 @@ int main(int argc, char *argv[])
     if (  buffer == NULL  ) {
         printf("cannot allocate %d bytes of memory\n", lMaxBuffer);
         fclose(file);
-        return 12;
+        return 1;
     }
     
     if (  getNextLine() == 0  )
@@ -219,5 +226,10 @@ int main(int argc, char *argv[])
     free(buffer);
     fclose(file);
 
-    return 0;
+    if(!err)
+    {
+        printf("Success\n");
+    }
+
+    return err;
 }
