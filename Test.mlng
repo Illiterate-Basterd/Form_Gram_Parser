@@ -2,6 +2,8 @@ char password = "passwrd";
 print("Enter password\n");
 int res = check(password);
 
+int a = b = c = "str" = d; // Неверное использование оператора присваивания
+
 void func(int a , bool b);
 
 char test(char , float c); // Неверное объявление параметров функции

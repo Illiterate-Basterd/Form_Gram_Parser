@@ -1,34 +1,38 @@
 C-Like language parser written using flex/bison
 ```
-     7 |char test(char , float c); // Неверное объявление параметров функции
-...... !...............^
-Error: syntax error, unexpected ',', expecting ID at line 7
+     5 |int a = b = c = "str" = d; // Неверное использование оператора присваивания
+...... !......................^
+Error: syntax error, unexpected ASSIGN, expecting ';' at line 5
                                                                       
-    15 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
+     9 |char test(char , float c); // Неверное объявление параметров функции
 ...... !...............^
-Error: syntax error, unexpected ID, expecting ';' at line 15
+Error: syntax error, unexpected ',', expecting ID at line 9
                                                                       
-    15 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
+    17 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
+...... !...............^
+Error: syntax error, unexpected ID, expecting ';' at line 17
+                                                                      
+    17 |for( int a = 2 a < 3; a = a + 3 ) // Неверная запись цикла for()
 ...... !................................^
-Error: syntax error, unexpected ')', expecting ';' at line 15
+Error: syntax error, unexpected ')', expecting ';' at line 17
                                                                       
-    22 |            qwe === 2; // Неверная запись оператора присваивания
+    24 |            qwe === 2; // Неверная запись оператора присваивания
 ...... !..................^
-Error: syntax error, unexpected ASSIGN at line 22
+Error: syntax error, unexpected ASSIGN at line 24
                                                                       
-    29 |for(;;); // Многострочная ошибка
+    31 |for(;;); // Многострочная ошибка
 ...... !^^^
-Error: syntax error, unexpected FOR, expecting ';' at line 29
+Error: syntax error, unexpected FOR, expecting ';' at line 31
                                                                       
-    31 |bool bool; // Неверное объявление переменной
+    33 |bool bool; // Неверное объявление переменной
 ...... !.....^^^^
-Error: syntax error, unexpected BOOL, expecting ID at line 31
+Error: syntax error, unexpected BOOL, expecting ID at line 33
                                                                       
-    36 |    b = b ** 2; // Неверное арифметическое выражение
+    38 |    b = b ** 2; // Неверное арифметическое выражение
 ...... !...........^
-Error: syntax error, unexpected '*' at line 36
+Error: syntax error, unexpected '*' at line 38
                                                                       
-    53 |return (print("OK"); // Неверная последовательность открывающих и закрывающих скобок
+    55 |return (print("OK"); // Неверная последовательность открывающих и закрывающих скобок
 ...... !...................^
-Error: syntax error, unexpected ';', expecting ')' at line 53
+Error: syntax error, unexpected ';', expecting ')' at line 55
 ```

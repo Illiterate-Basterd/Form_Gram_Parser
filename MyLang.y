@@ -121,6 +121,7 @@ VAL:  NUM
     | '+' VAL 
     | '!' VAL 
     | '(' EXPR ')'
+    | STRING
     | ID 
     | ID '(' ARGS ')'
     | PRINT '(' ARGS ')'
@@ -139,7 +140,6 @@ ARGS:
 
 
 ARG:  EXPR 
-    | STRING
 
 
 RET:  RETURN ';'
