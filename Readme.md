@@ -1,8 +1,8 @@
-C-Like language parser written using flex/bison
+*C-Like language parser written using flex/bison*
 
 Compile using Makefile
 
-Current output on Test.mlng:
+Current output on ```./Parser Test.mlng```:
 ```
      5 |int a = b = c = "str" = d; // Неверное использование оператора присваивания
 ...... !......................^
