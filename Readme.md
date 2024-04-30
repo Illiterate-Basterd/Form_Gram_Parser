@@ -4,6 +4,8 @@ Compile using Makefile
 
 Current output on ```./Parser Test.mlng```:
 ```
+Error(s) occured while parsing:
+
      5 |int a = b = c = "str" = d; // Неверное использование оператора присваивания
 ...... !......................^
 Error: syntax error, unexpected ASSIGN, expecting ';' at line 5
