@@ -57,7 +57,6 @@ char *dumpString(char *s) {
     return buf;
 }
 
-extern
 void PrintError(char *errorstring, ...) {
     static char errmsg[10000];
     va_list args;
@@ -107,13 +106,12 @@ void PrintError(char *errorstring, ...) {
  * 
  * dumps the contents of the current row
  *------------------------------------------------------------------*/
-extern
 void DumpRow(void) {
     fprintf(stdout, "%6d |%.*s", nRow, lBuffer, buffer);
 }
 
-extern
-void BeginToken(char *t) {
+void BeginToken(char *t) 
+{
     /*================================================================*/
     /* remember last read token --------------------------------------*/
     nTokenStart = nTokenNextStart;
@@ -132,22 +130,22 @@ void BeginToken(char *t) {
                             yylloc.first_column,
                             yylloc.last_column, nTokenNextStart);
     }
-    }
+}
 
-    /*--------------------------------------------------------------------
-    * GetNextChar
-    * 
-    * reads a character from input for flex
-    *------------------------------------------------------------------*/
-    extern
-    int GetNextChar(char *b, int maxBuffer) {
+/*--------------------------------------------------------------------
+* GetNextChar
+* 
+* reads a character from input for flex
+*------------------------------------------------------------------*/
+int GetNextChar(char *b, int maxBuffer) 
+{
     int frc;
-    
+
     /*================================================================*/
     /*----------------------------------------------------------------*/
     if (  eof  )
         return 0;
-    
+
     /*================================================================*/
     /* read next line if at the end of the current -------------------*/
     while (  nBuffer >= lBuffer  ) {

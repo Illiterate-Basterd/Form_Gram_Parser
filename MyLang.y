@@ -7,7 +7,7 @@
     extern int yylex();
     extern YYLTYPE yylloc;
 
-    extern void yyerror(char *s) 
+    void yyerror(char *s) 
     {
         DumpRow();
         PrintError(s);

@@ -17,11 +17,10 @@ typedef struct YYLTYPE
 #include <float.h>
 #include "y.tab.h"
 
-extern int yylex(void);
 extern int yyparse(void);
 extern void yyerror(char*);
 
-extern void DumpRow(void);
-extern int GetNextChar(char *b, int maxBuffer);
-extern void BeginToken(char*);
-extern void PrintError(char *s, ...);
+void DumpRow(void);
+int GetNextChar(char *b, int maxBuffer);
+void BeginToken(char*);
+void PrintError(char *s, ...);
