@@ -1,4 +1,4 @@
-*C-Like language parser written using flex/bison*
+###C-Like language parser written using flex/bison
 
 Compile using Makefile
 
