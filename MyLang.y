@@ -50,7 +50,7 @@ OP:   FUNCBODY
     | IF '(' EXPR ')' '{' OPS '}' ELSE '{' OPS '}'
     | WHILE '(' EXPR1 ')' OP
     | FORSTMNT
-    | DO OP WHILE '(' EXPR1 ')' ';'
+    | DO '{' OP '}' WHILE '(' EXPR1 ')' ';'
     | RET
     | DECL ';'
     | FUNCDECL
