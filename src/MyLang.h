@@ -15,7 +15,7 @@ typedef struct YYLTYPE
 #include <stdlib.h>
 #include <stdarg.h>
 #include <float.h>
-#include "y.tab.h"
+#include "Build/y.tab.h"
 
 extern int yyparse(void);
 extern void yyerror(char*);

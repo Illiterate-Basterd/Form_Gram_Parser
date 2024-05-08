@@ -1,5 +1,5 @@
 %{
-    #include "MyLang.h"
+    #include "../MyLang.h"
     #define YYERROR_VERBOSE 1
 
     extern int yylineno;

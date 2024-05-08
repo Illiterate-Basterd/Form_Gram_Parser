@@ -1,6 +1,6 @@
 # **C-Like language parser written using flex/bison**
 
-Compile using Makefile
+Compile using Makefile: ```/Form_Gram_Parser/src/Build$ make```
 
 Current output on ```./Parser Test.mlng```:
 ```

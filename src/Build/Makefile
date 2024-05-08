@@ -1,9 +1,9 @@
 CC = gcc
 
 LEX = flex
-LEXER = MyLang.l
+LEXER = ../MyLang.l
 BISON = bison
-PARSER = MyLang.y
+PARSER = ../MyLang.y
 SRC = lex.yy.c y.tab.c
 ANALYZER = Parser
 
@@ -16,7 +16,7 @@ build:
 	@echo ---------------------------------------------------------
 	$(LEX) $(LEXER)
 	@echo ---------------------------------------------------------
-	$(CC) $(SRC) MyLang.c -m32 -o $(ANALYZER)
+	$(CC) $(SRC) ../MyLang.c -m32 -o $(ANALYZER)
 
 clean:
 	rm -f $(SRC) y.tab.h
