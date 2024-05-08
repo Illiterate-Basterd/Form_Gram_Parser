@@ -2,7 +2,7 @@
 
 Compile using Makefile: ```/Form_Gram_Parser/src/Build$ make```
 
-Current output on ```./Parser Test.mlng```:
+Current output on ```./Parser ../Test.mlng```:
 ```
 Error(s) occured while parsing:
 
