@@ -1,5 +1,5 @@
 %{
-    #include "../MyLang.h"
+    #include "MyLang.h"
 
     #define YY_INPUT(buf,result,max_size)  {\
     result = GetNextChar(buf, max_size); \

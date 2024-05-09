@@ -1,8 +1,8 @@
 # **C-Like language parser written using flex/bison**
 
-Compile using Makefile: ```~/Form_Gram_Parser/src/Build$ make```
+Compile using Makefile: ```~/Form_Gram_Parser$ make build```
 
-Current output on ```~/Form_Gram_Parser/src/Build$ ./Parser ../Test.mlng```:
+Current output on ```~/Form_Gram_Parser/$ make test```:
 ```
 Error(s) occured while parsing:
 
