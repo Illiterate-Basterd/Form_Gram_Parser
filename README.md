@@ -2,7 +2,7 @@
 
 Compile using Makefile: ```~/Form_Gram_Parser$ make build```
 
-Current output on ```~/Form_Gram_Parser/$ make test```:
+Current output on ```~/Form_Gram_Parser$ make test```:
 ```
 Error(s) occured while parsing:
 
