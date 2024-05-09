@@ -111,7 +111,7 @@ void PrintError(char *errorstring, ...) {
 void DumpRow(void) {
         if(!err)
     {
-        fprintf(stderr, "Error(s) occured while parsing:\n\n");
+        fprintf(stderr, "\nError(s) occured while parsing:\n\n");
     }
     
     fprintf(stdout, "%6d |%.*s", nRow, lBuffer, buffer);
