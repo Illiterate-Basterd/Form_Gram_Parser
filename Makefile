@@ -5,13 +5,14 @@ LEXER = MyLang.l
 BISON = bison
 PARSER = MyLang.y
 ANALYZER = Parser
-BUILDDIR = Build
+BUILDDIR = build
 MAIN = MyLang.c
 
 
 build: $(BUILDDIR)/$(ANALYZER)
 
 $(BUILDDIR)/$(ANALYZER):
+	mkdir $(BUILDDIR)
 	cp src/MyLang* $(BUILDDIR)
 	$(BISON) -ydv -Wcounterexamples -Wno-yacc $(BUILDDIR)/$(PARSER) -o $(BUILDDIR)/y.tab.c
 	$(LEX) -o $(BUILDDIR)/lex.yy.c $(BUILDDIR)/$(LEXER)
@@ -20,7 +21,7 @@ $(BUILDDIR)/$(ANALYZER):
 
 
 clean:
-	rm -f $(BUILDDIR)/lex.yy.c $(BUILDDIR)/y.* $(BUILDDIR)/$(ANALYZER)
+	rm -rf $(BUILDDIR)
 
 
 test:
