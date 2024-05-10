@@ -12,7 +12,7 @@ MAIN = MyLang.c
 build: $(BUILDDIR)/$(ANALYZER)
 
 $(BUILDDIR)/$(ANALYZER):
-	mkdir $(BUILDDIR)
+	mkdir -v $(BUILDDIR)
 	cp src/MyLang* $(BUILDDIR)
 	$(BISON) -ydv -Wcounterexamples -Wno-yacc $(BUILDDIR)/$(PARSER) -o $(BUILDDIR)/y.tab.c
 	$(LEX) -o $(BUILDDIR)/lex.yy.c $(BUILDDIR)/$(LEXER)
