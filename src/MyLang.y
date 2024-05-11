@@ -48,9 +48,9 @@ OP:   FUNCBODY
     | ';' 
     | IF '(' EXPR ')' '{' OPS '}'
     | IF '(' EXPR ')' '{' OPS '}' ELSE '{' OPS '}'
-    | WHILE '(' EXPR1 ')' OP
+    | WHILE '(' EXPR ')' '{' OPS '}'
     | FORSTMNT
-    | DO '{' OPS '}' WHILE '(' EXPR1 ')' ';'
+    | DO '{' OPS '}' WHILE '(' EXPR ')' ';'
     | RET
     | DECL ';'
     | FUNCDECL
