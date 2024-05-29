@@ -25,14 +25,25 @@
 %defines
 %define parse.error verbose
 
-%start PROGRAM
+%union
+{
+ int value;
+ char str[256];
+}
+
+%token <str> ID STRING
+%token <value> NUM
 
 %token IF ELSE WHILE FOR DO
 %token EQ LE GE AND OR NE
 %token DIV
-%token STRING NUM ID
 %token RETURN PRINT ASSIGN
 %token INT BOOL CHAR FLOAT VOID
+
+%left OR
+%left AND
+
+%start PROGRAM
 
 %%
 PROGRAM: 
@@ -90,30 +101,30 @@ FUNCDECL: DATATYPE ID '(' FUNCARGS ')' ';'
     | DATATYPE ID '(' ')' FUNCBODY
 
 
-EXPR: EXPR1 
+EXPR: EXPR1
+    | EXPR1 AND EXPR
+    | EXPR1 OR EXPR 
     | ID ASSIGN ARG   
 
 
 EXPR1: EXPR2 
-    |  EXPR1 EQ EXPR2 
-    |  EXPR1 LE EXPR2 
-    |  EXPR1 GE EXPR2 
-    |  EXPR1 NE EXPR2 
-    |  EXPR1 '>' EXPR2 
-    |  EXPR1 '<' EXPR2
+    |  EXPR2 EQ EXPR1 
+    |  EXPR2 LE EXPR1 
+    |  EXPR2 GE EXPR1 
+    |  EXPR2 NE EXPR1 
+    |  EXPR2 '>' EXPR1 
+    |  EXPR2 '<' EXPR1
 
 
 EXPR2: TERM 
-    |  EXPR2 '+' TERM 
-    |  EXPR2 '-' TERM 
-    |  EXPR2 OR TERM
+    |  TERM '+' EXPR2
+    |  TERM '-' EXPR2 
 
 
 TERM: VAL 
-    | TERM '*' VAL 
-    | TERM '/' VAL 
-    | TERM DIV VAL 
-    | TERM AND VAL
+    | VAL '*' TERM
+    | VAL '/' TERM 
+    | VAL DIV TERM 
 
 
 VAL:  NUM 

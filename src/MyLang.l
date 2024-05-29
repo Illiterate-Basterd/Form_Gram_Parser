@@ -59,14 +59,14 @@ void                    { BeginToken(yytext); return VOID; }
 
 [0-9]+                  {   
                             BeginToken(yytext);
-                            yylval = yytext;
+                            yylval.value = atoi(yytext);
                             return NUM;
                         }
                         
 
 [a-zA-Z_][a-zA-Z0-9_]*  { 
                             BeginToken(yytext);  
-                            yylval = yytext;
+                            strcat(yylval.str, yytext);
                             return ID;
                         }
 
@@ -77,13 +77,19 @@ void                    { BeginToken(yytext); return VOID; }
 
 <INITIAL>["]            {   
                             BeginToken(yytext);
-                            yylval = "";
+                            strcat(yylval.str, "");
                             BEGIN(STR);
                         }
                         
-<STR>[^\\\n"]           { BeginToken(yytext); yylval += yytext; }
-<STR>\\n                { BeginToken(yytext); yylval += '\n'; }
-<STR>\\["]              { BeginToken(yytext); yylval += '\"'; }
+<STR>[^\\\n"]           { BeginToken(yytext); strcat(yylval.str, yytext); }
+<STR>\\n                { BeginToken(yytext);
+                          char* tmp = "\n";
+                          strcat(yylval.str, tmp); 
+                        }
+<STR>\\["]              { BeginToken(yytext); 
+                          char* tmp = "\"";
+                          strcat(yylval.str, tmp); 
+                        }
 <STR>\\                 { BeginToken(yytext); } 
 <STR>\n                 { BeginToken(yytext); } 
 <STR>["]                { BeginToken(yytext); BEGIN(INITIAL); return STRING; }
