@@ -1,4 +1,1 @@
-lex.yy.c
-test.c
-y.*
-*.json
+build/*
